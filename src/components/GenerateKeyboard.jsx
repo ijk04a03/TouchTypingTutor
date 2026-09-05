@@ -1,4 +1,4 @@
-import KeyboardLayout from "../Data/keyBoardLayout";
+import KeyboardLayout from "../data/keyBoardLayout";
 
 const isMac = navigator.userAgentData?.platform === "macOS" || /Mac/i.test(navigator.platform);
 const getKeyLabel = (key) => {

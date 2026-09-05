@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import TrainingContent from "../Data/TrainingContent";
+import TrainingContent from "../data/trainingContent";
 
 let UserPerformance = {
     userId: "user-001",
