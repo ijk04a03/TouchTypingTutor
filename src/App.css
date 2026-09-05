@@ -1,0 +1,264 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.main-container {
+  align-items: center;
+  background-color: #343a40;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 75vw;
+}
+.KeyboardContainer {
+  --key-gap: 0.35rem;
+  --key-size: 3.25rem;
+  display: flex;
+  flex-direction: column;
+  font-family:
+    Roboto, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  gap: var(--key-gap);
+  padding: 1rem;
+  user-select: none;
+  width: max-content;
+}
+.keyRow {
+  display: flex;
+  gap: var(--key-gap);
+  justify-content: space-between;
+}
+.keyboard-key {
+  align-items: center;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 0.1875rem 0 rgba(0, 0, 0, 0.15),
+    0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+  height: var(--key-size);
+  justify-content: center;
+  padding: 0;
+  transition:
+    background-color 0.1s ease,
+    color 0.1s ease,
+    border-color 0.1s ease,
+    box-shadow 70ms ease,
+    transform 70ms ease;
+}
+.keyboard-key:hover {
+  filter: brightness(0.96);
+  transform: translateY(-0.0625rem);
+}
+.keyboard-key:focus {
+  outline: 0;
+}
+.keyboard-key:focus-visible {
+  outline: 0.1875rem solid rgba(0, 120, 255, 0.45);
+  outline-offset: 0.125rem;
+}
+.keyboard-key:active {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(0.1875rem);
+}
+.fingerLP,
+.fingerRP {
+  --finger-color: #ff6b6b;
+  --finger-color-dark: #e54848;
+  --finger-color-light: #ffe3e3;
+}
+.fingerLR,
+.fingerRR {
+  --finger-color: #ffa94d;
+  --finger-color-dark: #e98520;
+  --finger-color-light: #fff0dc;
+}
+.fingerLM,
+.fingerRM {
+  --finger-color: #ffd43b;
+  --finger-color-dark: #e5b900;
+  --finger-color-light: #fff8d6;
+}
+.fingerLI,
+.fingerRI {
+  --finger-color: #51cf66;
+  --finger-color-dark: #2f9e44;
+  --finger-color-light: #ddf8e2;
+}
+.fingerthumb {
+  --finger-color: #4dabf7;
+  --finger-color-dark: #1971c2;
+  --finger-color-light: #e3f2ff;
+}
+.keyboard-key[class*="finger"] {
+  background: var(--finger-color-light);
+  border-color: color-mix(in srgb, var(--finger-color) 35%, transparent);
+}
+.keyboard-key[class*="finger"]:hover {
+  background: var(--finger-color);
+  border-color: var(--finger-color-dark);
+  color: #fff;
+}
+.keyboard-key[class*="finger"]:active {
+  background: var(--finger-color-dark);
+  color: #fff;
+}
+.keyboard-key.next {
+  animation: nextKeyPulse 1s ease-in-out infinite;
+  background: var(--finger-color);
+  border-color: var(--finger-color-dark);
+  color: #fff;
+}
+@keyframes nextKeyPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0.1875rem 0 var(--finger-color-dark),
+      0 0 0 transparent;
+  }
+  50% {
+    box-shadow:
+      0 0.1875rem 0 var(--finger-color-dark),
+      0 0 1.125rem color-mix(in srgb, var(--finger-color) 55%, transparent);
+  }
+}
+.keyboard-key.pressed {
+  background: var(--finger-color-dark);
+  box-shadow: none;
+  color: #fff;
+  transform: translateY(0.1875rem);
+}
+.keyboard-key.correct {
+  background: #2f9e44;
+  border-color: #237a34;
+  box-shadow: 0 0.1875rem 0 #237a34;
+  color: #fff;
+}
+.keyboard-key.incorrect {
+  animation: incorrectShake 180ms ease-in-out;
+  background: #e03131;
+  border-color: #b52525;
+  color: #fff;
+}
+@keyframes incorrectShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.25rem);
+  }
+  50% {
+    transform: translateX(0.25rem);
+  }
+  75% {
+    transform: translateX(-0.1875rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.keyboard-key.target {
+  border-color: var(--finger-color);
+  border-width: 0.125rem;
+  box-shadow:
+    0 0.1875rem 0 var(--finger-color-dark),
+    0 0 0.75rem color-mix(in srgb, var(--finger-color) 35%, transparent);
+}
+.keyboard-key:disabled {
+  box-shadow: 0 0.125rem 0 rgba(0, 0, 0, 0.08);
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+#backspace,
+#capslock,
+#enter,
+#shift-left,
+#shift-right,
+#tab {
+  background: #e9ecef;
+  color: #343a40;
+  font-size: 0.75rem;
+}
+#backspace:hover,
+#capslock:hover,
+#enter:hover,
+#shift-left:hover,
+#shift-right:hover,
+#tab:hover {
+  background: #dee2e6;
+}
+#space {
+  background: var(--finger-color-light);
+  border-color: var(--finger-color);
+  font-size: 0.75rem;
+}
+#space:hover {
+  background: var(--finger-color);
+  color: #fff;
+}
+#space:active {
+  background: var(--finger-color-dark);
+}
+.TrainingBox {
+  align-items: center;
+  border: 0.125rem solid grey;
+  border-radius: 0.625rem;
+  color: #d9e2ec;
+  display: flex;
+  font-family:
+    Roboto, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  height: 15em;
+  justify-content: center;
+  overflow: scroll;
+  padding: 1.25rem;
+  white-space: pre-line;
+  width: 34.5em;
+}
+.SideBar {
+  align-items: center;
+  background-color: #343a40;
+  color: #fff;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 25vw;
+}
+@media (max-width: 56.25rem) {
+  .KeyboardContainer {
+    --key-gap: 0.25rem;
+    --key-size: 2.75rem;
+  }
+}
+@media (max-width: 43.75rem) {
+  .KeyboardContainer {
+    --key-gap: 0.2rem;
+    --key-size: 2.25rem;
+  }
+  .keyboard-key {
+    font-size: 0.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .keyboard-key {
+    transition: none;
+  }
+  .keyboard-key.incorrect,
+  .keyboard-key.next {
+    animation: none;
+  }
+}
