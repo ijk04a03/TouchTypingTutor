@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,6 +10,7 @@
   background-color: #343a40;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   height: 100vh;
   justify-content: center;
   width: 75vw;
@@ -208,21 +210,63 @@
   background: var(--finger-color-dark);
 }
 .TrainingBox {
-  align-items: center;
-  border: 0.125rem solid grey;
-  border-radius: 0.625rem;
-  color: #d9e2ec;
-  display: flex;
+  background: #3c434b;
+  border: 0.0625rem solid rgba(77, 171, 247, 0.18);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  color: #e7ecf1;
   font-family:
-    Roboto, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.5rem;
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.6rem;
   font-weight: 400;
   height: 15em;
-  justify-content: center;
-  overflow: scroll;
-  padding: 1.25rem;
+  letter-spacing: 0.01em;
+  line-height: 1.9;
+  overflow-y: auto;
+  padding: 1.75rem 2rem;
   white-space: pre-line;
-  width: 34.5em;
+  width: 80%;
+}
+.TrainingBox--loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.loading-caret {
+  animation: caretBlink 1s steps(1) infinite;
+  background: #4dabf7;
+  border-radius: 0.15rem;
+  display: inline-block;
+  height: 1.6em;
+  width: 0.6rem;
+}
+@keyframes caretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+#before {
+  color: rgba(231, 236, 241, 0.38);
+}
+#current {
+  background: #4dabf7;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.15rem rgba(77, 171, 247, 0.25);
+  color: #12181d;
+  margin: 0 -0.15em;
+  padding: 0.05em 0.15em;
+}
+/* Reserved for future wrong-keystroke feedback — mirrors .keyboard-key.incorrect */
+.letter-incorrect {
+  animation: incorrectShake 180ms ease-in-out;
+  background: #e03131;
+  border-radius: 0.2rem;
+  color: #fff;
 }
 .SideBar {
   align-items: center;
@@ -238,6 +282,7 @@
   top: 0;
   width: 25vw;
 }
+
 @media (max-width: 56.25rem) {
   .KeyboardContainer {
     --key-gap: 0.25rem;
@@ -259,6 +304,13 @@
   }
   .keyboard-key.incorrect,
   .keyboard-key.next {
+    animation: none;
+  }
+  .loading-caret {
+    animation: none;
+    opacity: 1;
+  }
+  .letter-incorrect {
     animation: none;
   }
 }

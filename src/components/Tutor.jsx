@@ -27,38 +27,64 @@ let UserPerformance = {
     },
 
     progress: {
-        module: 1,
+        module: 8,
         lesson: 1,
     }
 };
 
-function Tutor() {
+
+function Tutor({ typedChar }) {
+    const [text, setText] = useState("");
+    const [count, setCount] = useState(0);
+    const [trainingContent, setTrainingContent] = useState(null);
     let currentModule = UserPerformance.progress.module;
     let currentLesson = UserPerformance.progress.lesson;
-    const [trainingContent, setTrainingContent] = useState(null);
-
 
     useEffect(() => {
         async function loadTrainingContent() {
             const data = TrainingContent;
             setTrainingContent(data);
         }
-
         loadTrainingContent();
     }, []);
 
-    if (!trainingContent) {
-        return <div>Loading...</div>;
-    }
+    useEffect(() => {
+        async function run() {
+            if (trainingContent) {
+                const content = trainingContent.modules[currentModule - 1]?.lessons[currentLesson - 1]?.exercises;
+                setText(content);
+            }
+        }
+        run();
+    }, [trainingContent, currentModule, currentLesson]);
 
-    const currentTrainingContent =
-        trainingContent.modules[currentModule - 1]
-            ?.lessons[currentLesson - 1]
-            ?.exercises;
+    const letter = text[count];
+    useEffect(() => {
+        async function run() {
+            if (typedChar && typedChar === letter) {
+                setCount(c => c + 1);
+            } else {
+                let box = document.querySelector(".TrainingBox");
+                setInterval(() => { box.setAttribute("style", "border:10px solid red") }, 10000)
+                box.setAttribute("style", "border:none");
+            }
+        }
+        run();
+    }, [typedChar, letter]);
+
+    if (!trainingContent) {
+        return (
+            <div className="TrainingBox TrainingBox--loading">
+                <span className="loading-caret" />
+            </div>
+        );
+    }
     return (
         <>
             <div className="TrainingBox">
-                {currentTrainingContent}
+                <span id="before">{text.slice(0, count)}</span>
+                <span id="current">{letter}</span>
+                <span id="after">{text.slice(count + 1)}</span>
             </div>
         </>
     )
