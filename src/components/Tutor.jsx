@@ -33,9 +33,8 @@ let UserPerformance = {
 };
 
 
-function Tutor({ typedChar }) {
+function Tutor({ count, onCurrentLetter, hasError }) {
     const [text, setText] = useState("");
-    const [count, setCount] = useState(0);
     const [trainingContent, setTrainingContent] = useState(null);
     let currentModule = UserPerformance.progress.module;
     let currentLesson = UserPerformance.progress.lesson;
@@ -58,19 +57,15 @@ function Tutor({ typedChar }) {
         run();
     }, [trainingContent, currentModule, currentLesson]);
 
+
     const letter = text[count];
+
     useEffect(() => {
-        async function run() {
-            if (typedChar && typedChar === letter) {
-                setCount(c => c + 1);
-            } else {
-                let box = document.querySelector(".TrainingBox");
-                setInterval(() => { box.setAttribute("style", "border:10px solid red") }, 10000)
-                box.setAttribute("style", "border:none");
-            }
+        if (letter) {
+            onCurrentLetter(letter);
         }
-        run();
-    }, [typedChar, letter]);
+    }, [letter, onCurrentLetter]);
+
 
     if (!trainingContent) {
         return (
@@ -81,7 +76,7 @@ function Tutor({ typedChar }) {
     }
     return (
         <>
-            <div className="TrainingBox">
+            <div className={`TrainingBox ${hasError ? "error" : ""}`}>
                 <span id="before">{text.slice(0, count)}</span>
                 <span id="current">{letter}</span>
                 <span id="after">{text.slice(count + 1)}</span>
@@ -91,6 +86,4 @@ function Tutor({ typedChar }) {
 
 }
 
-
-
-export default Tutor;
+export { Tutor as default };

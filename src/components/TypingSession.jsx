@@ -3,30 +3,49 @@ import Tutor from "./Tutor";
 import GenerateKeyboard from "./GenerateKeyboard";
 
 function TypingSession() {
+
+    const [count, setCount] = useState(0);
     const [pressedCode, setPressedCode] = useState(null); // physical key, e.g. "KeyA" — for highlighting
-    const [typedChar, setTypedChar] = useState(null);      // actual character, e.g. "a" — for comparison
+    const [currentLetter, setCurrentLetter] = useState("");
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             setPressedCode(event.code);
-            setTypedChar(event.key);
+
+            if (event.key === currentLetter) {
+                setCount(c => c + 1);
+                setHasError(false);
+            }
+            else {
+                setHasError(true);
+
+                setTimeout(() => {
+                    setHasError(false);
+                }, 500);
+            }
         };
+
         const handleKeyUp = () => {
             setPressedCode(null);
-            setTypedChar(null);
         };
 
         window.addEventListener("keydown", handleKeyDown);
         window.addEventListener("keyup", handleKeyUp);
+
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
             window.removeEventListener("keyup", handleKeyUp);
         };
-    }, []);
+    }, [currentLetter]);
 
     return (
         <>
-            <Tutor typedChar={typedChar} />
+            <Tutor
+                count={count}
+                onCurrentLetter={setCurrentLetter}
+                hasError={hasError}
+            />
             <GenerateKeyboard pressedCode={pressedCode} />
         </>
     );

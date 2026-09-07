@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -211,7 +211,7 @@
 }
 .TrainingBox {
   background: #3c434b;
-  border: 0.0625rem solid rgba(77, 171, 247, 0.18);
+  border: 0.2rem solid rgba(77, 171, 247, 0.18);
   border-radius: 0.75rem;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
   color: #e7ecf1;
@@ -227,6 +227,11 @@
   white-space: pre-line;
   width: 80%;
 }
+
+.TrainingBox.error {
+  border-color: red;
+}
+
 .TrainingBox--loading {
   align-items: center;
   display: flex;
