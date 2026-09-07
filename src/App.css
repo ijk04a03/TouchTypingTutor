@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+@import "./theme.css";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,21 +7,29 @@
 }
 .main-container {
   align-items: center;
-  background-color: #343a40;
+  background-color: var(--cream);
+  color: var(--ink);
   display: flex;
   flex-direction: column;
+  font-family: var(--font-body);
   gap: 2rem;
   height: 100vh;
   justify-content: center;
   width: 75vw;
+}
+.main-container h1 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 600;
+  text-align: center;
 }
 .KeyboardContainer {
   --key-gap: 0.35rem;
   --key-size: 3.25rem;
   display: flex;
   flex-direction: column;
-  font-family:
-    Roboto, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: var(--font-body);
   gap: var(--key-gap);
   padding: 1rem;
   user-select: none;
@@ -34,13 +42,16 @@
 }
 .keyboard-key {
   align-items: center;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.15);
+  background: var(--paper);
+  border: 0.0625rem solid var(--line);
   border-radius: 0.5rem;
   box-shadow:
-    0 0.1875rem 0 rgba(0, 0, 0, 0.15),
-    0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+    0 0.1875rem 0 rgba(0, 0, 0, 0.3),
+    0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  color: var(--cream);
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   flex: 0 0 auto;
   font: inherit;
   font-size: 0.9rem;
@@ -63,7 +74,7 @@
   outline: 0;
 }
 .keyboard-key:focus-visible {
-  outline: 0.1875rem solid rgba(0, 120, 255, 0.45);
+  outline: 0.1875rem solid rgba(216, 161, 59, 0.55);
   outline-offset: 0.125rem;
 }
 .keyboard-key:active {
@@ -145,8 +156,8 @@
 }
 .keyboard-key.incorrect {
   animation: incorrectShake 180ms ease-in-out;
-  background: #e03131;
-  border-color: #b52525;
+  background: var(--red);
+  border-color: color-mix(in srgb, var(--red) 70%, black);
   color: #fff;
 }
 @keyframes incorrectShake {
@@ -174,7 +185,7 @@
     0 0 0.75rem color-mix(in srgb, var(--finger-color) 35%, transparent);
 }
 .keyboard-key:disabled {
-  box-shadow: 0 0.125rem 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.125rem 0 rgba(0, 0, 0, 0.15);
   cursor: not-allowed;
   opacity: 0.45;
   transform: none;
@@ -185,8 +196,8 @@
 #shift-left,
 #shift-right,
 #tab {
-  background: #e9ecef;
-  color: #343a40;
+  background: var(--surface-alt);
+  color: var(--ink);
   font-size: 0.75rem;
 }
 #backspace:hover,
@@ -195,7 +206,7 @@
 #shift-left:hover,
 #shift-right:hover,
 #tab:hover {
-  background: #dee2e6;
+  background: var(--surface);
 }
 #space {
   background: var(--finger-color-light);
@@ -210,13 +221,13 @@
   background: var(--finger-color-dark);
 }
 .TrainingBox {
-  background: #3c434b;
-  border: 0.2rem solid rgba(77, 171, 247, 0.18);
+  background: var(--surface);
+  border: 0.2rem solid color-mix(in srgb, var(--gold) 22%, transparent);
   border-radius: 0.75rem;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
-  color: #e7ecf1;
+  box-shadow: var(--shadow);
+  color: var(--ink);
   font-family:
-    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 1.6rem;
   font-weight: 400;
   height: 15em;
@@ -229,7 +240,7 @@
 }
 
 .TrainingBox.error {
-  border-color: red;
+  border-color: var(--red);
 }
 
 .TrainingBox--loading {
@@ -239,7 +250,7 @@
 }
 .loading-caret {
   animation: caretBlink 1s steps(1) infinite;
-  background: #4dabf7;
+  background: var(--gold);
   border-radius: 0.15rem;
   display: inline-block;
   height: 1.6em;
@@ -256,38 +267,220 @@
   }
 }
 #before {
-  color: rgba(231, 236, 241, 0.38);
+  color: color-mix(in srgb, var(--ink) 38%, transparent);
 }
 #current {
-  background: #4dabf7;
+  background: var(--gold);
   border-radius: 0.2rem;
-  box-shadow: 0 0 0 0.15rem rgba(77, 171, 247, 0.25);
-  color: #12181d;
+  box-shadow: 0 0 0 0.15rem color-mix(in srgb, var(--gold) 25%, transparent);
+  color: var(--cream);
   margin: 0 -0.15em;
   padding: 0.05em 0.15em;
 }
 /* Reserved for future wrong-keystroke feedback — mirrors .keyboard-key.incorrect */
 .letter-incorrect {
   animation: incorrectShake 180ms ease-in-out;
-  background: #e03131;
+  background: var(--red);
   border-radius: 0.2rem;
   color: #fff;
 }
 .SideBar {
-  align-items: center;
-  background-color: #343a40;
-  color: #fff;
-  display: flex;
+  padding: 2.5rem 2rem;
+  align-items: stretch;
+  background-color: var(--surface);
+  color: var(--ink);
   height: 100vh;
-  justify-content: center;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: flex-start;
+  overflow-y: auto;
   position: fixed;
   right: 0;
-  text-align: center;
   top: 0;
   width: 25vw;
 }
 
+.ProgressPanel {
+  background: var(--surface-alt);
+  border: 1px solid #514a36;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+.ProgressPanel-title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.9rem;
+}
+.ProgressPanel-track {
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+.ProgressPanel-fill {
+  background: linear-gradient(90deg, var(--gold), var(--red));
+  border-radius: inherit;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+.ProgressPanel-meta {
+  color: var(--text-secondary);
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  justify-content: space-between;
+  letter-spacing: 0.02em;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+.ProgressPanel-current {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0.9rem 0 0;
+}
+.ProgressPanel-stats {
+  border-top: 1px solid #514a36;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+}
+.ProgressPanel-stats dt {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.ProgressPanel-stats dd {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0.2rem 0 0;
+}
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#settings label {
+  color: var(--text-secondary);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+#settings label:first-child {
+  margin-top: 0;
+}
+.targets-row {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+}
+.target-input {
+  align-items: center;
+  background: var(--surface-alt);
+  border: 1px solid #514a36;
+  border-radius: 9px;
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 0 12px;
+}
+.target-input:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(216, 161, 59, 0.14);
+}
+.target-input input {
+  appearance: textfield;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  flex: 1 1 auto;
+  font: inherit;
+  min-height: 42px;
+  min-width: 0;
+  padding: 0;
+  text-transform: none;
+}
+.target-input input:focus {
+  outline: none;
+}
+.target-input input::-webkit-outer-spin-button,
+.target-input input::-webkit-inner-spin-button {
+  margin: 0;
+}
+.target-input span {
+  color: var(--gold);
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+#settings select {
+  appearance: none;
+  background-color: var(--surface-alt);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23D8A13B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 14px center;
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
+  border: 1px solid #514a36;
+  border-radius: 9px;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  min-height: 44px;
+  padding: 0 36px 0 12px;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+  width: 100%;
+}
+#settings select:hover {
+  background-color: color-mix(in srgb, var(--surface-alt) 80%, var(--gold) 20%);
+  border-color: color-mix(in srgb, #514a36 60%, var(--gold) 40%);
+}
+#settings select:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(216, 161, 59, 0.22);
+  outline: none;
+}
+#settings select option {
+  background: var(--surface-alt);
+  color: var(--ink);
+}
+#settings button {
+  background: var(--red);
+  border: 0;
+  border-radius: 9px;
+  color: #fff8ed;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  margin-top: 20px;
+  min-height: 44px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+  width: 100%;
+}
+#settings button:hover,
+#settings button:focus-visible {
+  background: #ff503b;
+  transform: translateY(-1px);
+}
 @media (max-width: 56.25rem) {
   .KeyboardContainer {
     --key-gap: 0.25rem;

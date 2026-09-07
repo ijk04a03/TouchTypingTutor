@@ -1,23 +1,152 @@
 const KeyboardLayout = {
     name: "QWERTY",
-
     rows: [
         {
             id: "number",
             keys: [
-                { id: "backquote", label: "`", code: "Backquote", finger: "LP" },
-                { id: "1", label: "1", code: "Digit1", finger: "LP" },
-                { id: "2", label: "2", code: "Digit2", finger: "LR" },
-                { id: "3", label: "3", code: "Digit3", finger: "LM" },
-                { id: "4", label: "4", code: "Digit4", finger: "LI" },
-                { id: "5", label: "5", code: "Digit5", finger: "LI" },
-                { id: "6", label: "6", code: "Digit6", finger: "RI" },
-                { id: "7", label: "7", code: "Digit7", finger: "RI" },
-                { id: "8", label: "8", code: "Digit8", finger: "RM" },
-                { id: "9", label: "9", code: "Digit9", finger: "RR" },
-                { id: "0", label: "0", code: "Digit0", finger: "RP" },
-                { id: "minus", label: "-", code: "Minus", finger: "RP" },
-                { id: "equal", label: "=", code: "Equal", finger: "RP" },
+                {
+                    id: "backquote",
+                    label: "`",
+                    code: "Backquote",
+                    finger: "LP",
+                    other: {
+                        id: "tilde",
+                        label: "~",
+                        code: "Backquote"
+                    }
+                },
+                {
+                    id: "1",
+                    label: "1",
+                    code: "Digit1",
+                    finger: "LP",
+                    other: {
+                        id: "exclamation",
+                        label: "!",
+                        code: "Digit1"
+                    }
+                },
+                {
+                    id: "2",
+                    label: "2",
+                    code: "Digit2",
+                    finger: "LR",
+                    other: {
+                        id: "at",
+                        label: "@",
+                        code: "Digit2"
+                    }
+                },
+                {
+                    id: "3",
+                    label: "3",
+                    code: "Digit3",
+                    finger: "LM",
+                    other: {
+                        id: "hash",
+                        label: "#",
+                        code: "Digit3"
+                    }
+                },
+                {
+                    id: "4",
+                    label: "4",
+                    code: "Digit4",
+                    finger: "LI",
+                    other: {
+                        id: "dollar",
+                        label: "$",
+                        code: "Digit4"
+                    }
+                },
+                {
+                    id: "5",
+                    label: "5",
+                    code: "Digit5",
+                    finger: "LI",
+                    other: {
+                        id: "percent",
+                        label: "%",
+                        code: "Digit5"
+                    }
+                },
+                {
+                    id: "6",
+                    label: "6",
+                    code: "Digit6",
+                    finger: "RI",
+                    other: {
+                        id: "caret",
+                        label: "^",
+                        code: "Digit6"
+                    }
+                },
+                {
+                    id: "7",
+                    label: "7",
+                    code: "Digit7",
+                    finger: "RI",
+                    other: {
+                        id: "ampersand",
+                        label: "&",
+                        code: "Digit7"
+                    }
+                },
+                {
+                    id: "8",
+                    label: "8",
+                    code: "Digit8",
+                    finger: "RM",
+                    other: {
+                        id: "asterisk",
+                        label: "*",
+                        code: "Digit8"
+                    }
+                },
+                {
+                    id: "9",
+                    label: "9",
+                    code: "Digit9",
+                    finger: "RR",
+                    other: {
+                        id: "left-parenthesis",
+                        label: "(",
+                        code: "Digit9"
+                    }
+                },
+                {
+                    id: "0",
+                    label: "0",
+                    code: "Digit0",
+                    finger: "RP",
+                    other: {
+                        id: "right-parenthesis",
+                        label: ")",
+                        code: "Digit0"
+                    }
+                },
+                {
+                    id: "minus",
+                    label: "-",
+                    code: "Minus",
+                    finger: "RP",
+                    other: {
+                        id: "underscore",
+                        label: "_",
+                        code: "Minus"
+                    }
+                },
+                {
+                    id: "equal",
+                    label: "=",
+                    code: "Equal",
+                    finger: "RP",
+                    other: {
+                        id: "plus",
+                        label: "+",
+                        code: "Equal"
+                    }
+                },
                 {
                     id: "backspace",
                     label: "Backspace",
@@ -44,9 +173,39 @@ const KeyboardLayout = {
                 { id: "o", label: "O", code: "KeyO", finger: "RR" },
                 { id: "p", label: "P", code: "KeyP", finger: "RP" },
 
-                { id: "bracketleft", label: "[", code: "BracketLeft", finger: "RP" },
-                { id: "bracketright", label: "]", code: "BracketRight", finger: "RP" },
-                { id: "backslash", label: "\\", code: "Backslash", finger: "RP" }
+                {
+                    id: "bracketleft",
+                    label: "[",
+                    code: "BracketLeft",
+                    finger: "RP",
+                    other: {
+                        id: "brace-left",
+                        label: "{",
+                        code: "BracketLeft"
+                    }
+                },
+                {
+                    id: "bracketright",
+                    label: "]",
+                    code: "BracketRight",
+                    finger: "RP",
+                    other: {
+                        id: "brace-right",
+                        label: "}",
+                        code: "BracketRight"
+                    }
+                },
+                {
+                    id: "backslash",
+                    label: "\\",
+                    code: "Backslash",
+                    finger: "RP",
+                    other: {
+                        id: "pipe",
+                        label: "|",
+                        code: "Backslash"
+                    }
+                }
             ]
         },
 
@@ -67,8 +226,29 @@ const KeyboardLayout = {
                 { id: "j", label: "J", code: "KeyJ", finger: "RI" },
                 { id: "k", label: "K", code: "KeyK", finger: "RM" },
                 { id: "l", label: "L", code: "KeyL", finger: "RR" },
-                { id: "semicolon", label: ";", code: "Semicolon", finger: "RP" },
-                { id: "quote", label: "'", code: "Quote", finger: "RP" },
+
+                {
+                    id: "semicolon",
+                    label: ";",
+                    code: "Semicolon",
+                    finger: "RP",
+                    other: {
+                        id: "colon",
+                        label: ":",
+                        code: "Semicolon"
+                    }
+                },
+                {
+                    id: "quote",
+                    label: "'",
+                    code: "Quote",
+                    finger: "RP",
+                    other: {
+                        id: "double-quote",
+                        label: "\"",
+                        code: "Quote"
+                    }
+                },
 
                 {
                     id: "enter",
@@ -97,9 +277,40 @@ const KeyboardLayout = {
 
                 { id: "n", label: "N", code: "KeyN", finger: "RI" },
                 { id: "m", label: "M", code: "KeyM", finger: "RI" },
-                { id: "comma", label: ",", code: "Comma", finger: "RM" },
-                { id: "period", label: ".", code: "Period", finger: "RR" },
-                { id: "slash", label: "/", code: "Slash", finger: "RP" },
+
+                {
+                    id: "comma",
+                    label: ",",
+                    code: "Comma",
+                    finger: "RM",
+                    other: {
+                        id: "less-than",
+                        label: "<",
+                        code: "Comma"
+                    }
+                },
+                {
+                    id: "period",
+                    label: ".",
+                    code: "Period",
+                    finger: "RR",
+                    other: {
+                        id: "greater-than",
+                        label: ">",
+                        code: "Period"
+                    }
+                },
+                {
+                    id: "slash",
+                    label: "/",
+                    code: "Slash",
+                    finger: "RP",
+                    other: {
+                        id: "question",
+                        label: "?",
+                        code: "Slash"
+                    }
+                },
 
                 {
                     id: "shift-right",
@@ -166,6 +377,5 @@ const KeyboardLayout = {
         }
     ]
 };
-
 
 export default KeyboardLayout;

@@ -1,7 +1,7 @@
 import KeyboardLayout from "../data/keyBoardLayout";
 
 const isMac = navigator.userAgentData?.platform === "macOS" || /Mac/i.test(navigator.platform);
-const getKeyLabel = (key) => {
+const getKeyLabel = (key, shiftPressed) => {
   if (key.id === "meta-left" || key.id === "meta-right") {
     return isMac ? "CMD" : "WIN";
   }
@@ -10,10 +10,14 @@ const getKeyLabel = (key) => {
     return isMac ? "OPTION" : "ALT";
   }
 
+  if (shiftPressed && key.other) {
+    return key.other.label;
+  }
+
   return key.label;
 };
 
-const GenerateKeyboard = function ({ pressedCode }) {
+const GenerateKeyboard = function ({ pressedCode, shiftPressed, expectedCodes }) {
   return (
     <>
       <div className="KeyboardContainer">
@@ -28,10 +32,15 @@ const GenerateKeyboard = function ({ pressedCode }) {
                     id={key.id}
                     key={key.id}
                     data-code={key.code}
-                    className={`finger${key.finger || ""} keyboard-key ${pressedCode === key.code ? "pressed" : ""
-                      }`}
+                    className={`keyboard-key ${expectedCodes.includes(key.code) ? "next" : ""} 
+                    ${pressedCode === key.code ? "pressed" : ""} finger${key.finger || ""}`}
                     style={{ width: `${(key.width || 1) * 50}px` }}>
-                    {getKeyLabel(key)}
+                    {key.other && !shiftPressed && (
+                      <p id={key.other.id}>
+                        {key.other.label}
+                      </p>
+                    )}
+                    <p>{getKeyLabel(key, shiftPressed)}</p>
                   </button>)
               })
               }
@@ -39,7 +48,7 @@ const GenerateKeyboard = function ({ pressedCode }) {
           )
         })
         }
-      </div>
+      </div >
     </>
   )
 }

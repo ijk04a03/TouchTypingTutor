@@ -492,7 +492,7 @@ const TrainingData = {
       level: "advanced",
       lessons: [
         {
-          id: "lesson-2",
+          id: "lesson-1",
           title: "Long Code blocks",
           type: "text",
           exercises: ""
